@@ -16,48 +16,48 @@ Remember, it's self-paced so feel free to take a break! ☕️
 
 ```mermaid
 sequenceDiagram
-	actor User
-	participant Main as MainProgram
-	participant Ops as Operations
-	participant Data as DataProgram
+actor User
+participant Main as MainProgram
+participant Ops as Operations
+participant Data as DataProgram
 
-	loop Until the user exits
-		Main->>User: Display menu
-		User->>Main: Select an option
-		alt View balance
-			Main->>Ops: TOTAL
-			Ops->>Data: READ, balance
-			Data-->>Ops: Current balance
-			Ops-->>User: Display balance
-		else Credit account
-			Main->>Ops: CREDIT
-			Ops->>User: Request credit amount
-			User-->>Ops: Amount
-			Ops->>Data: READ, balance
-			Data-->>Ops: Current balance
-			Ops->>Ops: Add amount to balance
-			Ops->>Data: WRITE, updated balance
-			Data-->>Ops: Balance stored
-			Ops-->>User: Display updated balance
-		else Debit account
-			Main->>Ops: DEBIT
-			Ops->>User: Request debit amount
-			User-->>Ops: Amount
-			Ops->>Data: READ, balance
-			Data-->>Ops: Current balance
-			alt Sufficient funds
-				Ops->>Ops: Subtract amount from balance
-				Ops->>Data: WRITE, updated balance
-				Data-->>Ops: Balance stored
-				Ops-->>User: Display updated balance
-			else Insufficient funds
-				Ops-->>User: Display insufficient funds
-			end
-		else Exit
-			Main->>Main: Stop menu loop
-			Main-->>User: Display goodbye message
-		end
-	end
+loop Until the user exits
+Main->>User: Display menu
+User->>Main: Select an option
+alt View balance
+Main->>Ops: TOTAL
+Ops->>Data: READ, balance
+Data-->>Ops: Current balance
+Ops-->>User: Display balance
+else Credit account
+Main->>Ops: CREDIT
+Ops->>User: Request credit amount
+User-->>Ops: Amount
+Ops->>Data: READ, balance
+Data-->>Ops: Current balance
+Ops->>Ops: Add amount to balance
+Ops->>Data: WRITE, updated balance
+Data-->>Ops: Balance stored
+Ops-->>User: Display updated balance
+else Debit account
+Main->>Ops: DEBIT
+Ops->>User: Request debit amount
+User-->>Ops: Amount
+Ops->>Data: READ, balance
+Data-->>Ops: Current balance
+alt Sufficient funds
+Ops->>Ops: Subtract amount from balance
+Ops->>Data: WRITE, updated balance
+Data-->>Ops: Balance stored
+Ops-->>User: Display updated balance
+else Insufficient funds
+Ops-->>User: Display insufficient funds
+end
+else Exit
+Main->>Main: Stop menu loop
+Main-->>User: Display goodbye message
+end
+end
 ```
 
 &copy; 2025 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
